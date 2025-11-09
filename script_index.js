@@ -1,8 +1,9 @@
-// Rileva elementi
+// ============================
+// Riferimenti agli elementi
+// ============================
 const langSelect = document.getElementById('lang');
-const syncLink = document.getElementById('sync-link');
+const syncBtn = document.getElementById('sync');
 const resetBtn = document.getElementById('reset');
-
 const titolo = document.getElementById('titolo');
 const compositore = document.getElementById('compositore');
 const artista = document.getElementById('artista');
@@ -11,29 +12,31 @@ const lingua = document.getElementById('lingua');
 const by = document.getElementById('by');
 const testo = document.getElementById('testo');
 
-// Aggiorna i testi della pagina
+// ============================
+// Gestione lingua
+// ============================
 function updateLanguage() {
     const lang = localStorage.getItem('lang') || 'it';
-    langSelect.value = lang; // imposta la select alla lingua salvata
+    langSelect.value = lang;
     document.querySelectorAll('[data-it]').forEach(el => {
-        el.textContent = lang === 'it'
-            ? el.getAttribute('data-it')
-            : el.getAttribute('data-en');
+        el.textContent = lang === 'it' ? el.getAttribute('data-it') : el.getAttribute('data-en');
     });
 }
+updateLanguage();
 
-// Quando l'utente cambia lingua
 langSelect.addEventListener('change', () => {
     const lang = langSelect.value;
-    localStorage.setItem('lang', lang); // salva la scelta
-    updateLanguage(); // aggiorna i testi
-    syncLink.href = `sync.html?lang=${lang}`; // aggiorna il link
+    localStorage.setItem('lang', lang);
+    updateLanguage();
 });
 
+// ============================
+// Reset dei campi
+// ============================
 resetBtn.addEventListener('click', () => {
-    const selectedLang = langSelect.value;
-    const confirmedText = selectedLang === 'en' ? 'Are you sure you want to reset all fields?' : 'Sei sicuro di voler resettare tutti i campi?';
-    if (confirm(confirmedText)){
+    const lang = langSelect.value;
+    const confirmText = lang === 'it' ? 'Sei sicuro di voler resettare tutti i campi?' : 'Are you sure you want to reset all fields?';
+    if (confirm(confirmText)) {
         titolo.value = '';
         compositore.value = '';
         artista.value = '';
@@ -44,10 +47,10 @@ resetBtn.addEventListener('click', () => {
     }
 });
 
-// Pulsante sync
-document.getElementById('sync').addEventListener('click', (e) => {
-    e.preventDefault();
-    // Salva temporaneamente i dati in local storage per usarli su sync.html
+// ============================
+// Pulsante Sync
+// ============================
+syncBtn.addEventListener('click', () => {
     const data = {
         titolo: titolo.value,
         compositore: compositore.value,
@@ -57,132 +60,59 @@ document.getElementById('sync').addEventListener('click', (e) => {
         by: by.value,
         testo: testo.value
     };
-    localStorage.setItem('songData', JSON.stringify(data));
-    window.location.href = 'sync.html';
+    sessionStorage.setItem('songData', JSON.stringify(data));
+    const lang = langSelect.value;
+    window.location.href = `sync.html?lang=${lang}`;
 });
 
-// Placeholder per altri pulsanti
+// ============================
+// Altri pulsanti editor (load, strip, export, pdf, toupper, ecc.)
+// ============================
+// Carica testo
 document.getElementById('load').addEventListener('click', () => {
-    // Crea input file nascosto
     const inputFile = document.createElement('input');
     inputFile.type = 'file';
     inputFile.accept = '.txt';
-
-    inputFile.addEventListener('change', (event) => {
-        const file = event.target.files[0];
+    inputFile.addEventListener('change', (e) => {
+        const file = e.target.files[0];
         if (!file) return;
-
         const reader = new FileReader();
-        reader.onload = (e) => {
-            testo.value = e.target.result;
-        };
+        reader.onload = ev => testo.value = ev.target.result;
         reader.readAsText(file, 'utf-8');
     });
-
-    inputFile.click(); // apre il selettore file
+    inputFile.click();
 });
-document.getElementById('stripsec').addEventListener('click', () => {
-    let testo = document.getElementById('testo');
-    if (!testo.value.trim()){
-        const selectedLang = (langSelect && langSelect.value) || localStorage.getItem('lang') || 'it';
-        const alertText = selectedLang === 'en' ? 'No text to modify' : 'Nessun testo da modificare';
-        alert(alertText);
-        return;
-    }
 
+// Rimuovi sezioni [xx:xx] ecc.
+document.getElementById('stripsec').addEventListener('click', () => {
+    if (!testo.value.trim()) return alert((langSelect.value==='it'?'Nessun testo da modificare':'No text to modify'));
     testo.value = testo.value.replace(/\[.*?\]\s*/g, '');
 });
-document.getElementById('striptags').addEventListener('click', () => {
-    let testo = document.getElementById('testo');
-    if (!testo.value.trim()){
-        const selectedLang = (langSelect && langSelect.value) || localStorage.getItem('lang') || 'it';
-        const alertText = selectedLang === 'en' ? 'No text to modify' : 'Nessun testo da modificare';
-        alert(alertText);
-        return;
-    }
 
-    // Rimuove tutti i tag HTML o simili
+// Rimuovi tag HTML
+document.getElementById('striptags').addEventListener('click', () => {
+    if (!testo.value.trim()) return alert((langSelect.value==='it'?'Nessun testo da modificare':'No text to modify'));
     testo.value = testo.value.replace(/<[^>]*>/g, '');
 });
+
+// Esporta TXT
 document.getElementById('export').addEventListener('click', () => {
-    const testo = document.getElementById('testo').value.trim();
-    if (!testo){
-        const selectedLang = (langSelect && langSelect.value) || localStorage.getItem('lang') || 'it';
-        const alertText = selectedLang === 'en' ? 'No text to export' : 'Nessun testo da esportare';
-        alert(alertText);
-        return;
-    }
-
-    const titolo = document.getElementById('titolo').value.trim() || 'lyrics';
-    const blob = new Blob([testo], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-
+    if (!testo.value.trim()) return alert((langSelect.value==='it'?'Nessun testo da esportare':'No text to export'));
+    const fileName = titolo.value.trim() || 'lyrics';
+    const blob = new Blob([testo.value], {type:'text/plain'});
     const a = document.createElement('a');
-    a.href = url;
-    a.download = `${titolo}.txt`;
-    document.body.appendChild(a);
+    a.href = URL.createObjectURL(blob);
+    a.download = `${fileName}.txt`;
     a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
 });
-document.getElementById('pdf').addEventListener('click', () => {
-    const { jsPDF } = window.jspdf;
-    const testo = document.getElementById('testo').value.trim();
-    const titolo = document.getElementById('titolo').value.trim() || 'lyrics';
 
-    if (!testo){
-        const selectedLang = (langSelect && langSelect.value) || localStorage.getItem('lang') || 'it';
-        const alertText = selectedLang === 'en' ? 'No text to export' : 'Nessun testo da esportare';
-        alert(alertText);
-        return;
-    }
-
-    const pdf = new jsPDF();
-    pdf.setFont("Helvetica", "normal");
-    pdf.setFontSize(14);
-    pdf.text(titolo, 10, 10);
-    pdf.setFontSize(12);
-
-    const righe = pdf.splitTextToSize(testo, 100);
-    pdf.text(righe, 10, 20);
-
-    pdf.save(`${titolo}.pdf`);
-});
-document.getElementById('unlimit').addEventListener('click', () => {
-    const textarea = document.getElementById('testo');
-
-    textarea.removeAttribute('maxlenght'); // rimuove limite se esiste
-    textarea.style.height = 'auto'; // adatta altezza dinamicamente
-    textarea.style.overflowY = 'visible' // disattiva scrollbar
-
-    const selectedLang = (langSelect && langSelect.value) || localStorage.getItem('lang') || 'it';
-    const alertText = selectedLang === 'en'
-        ? 'Character limit removed. You can now write freely'
-        : 'Limite di caratteri rimosso. Ora puoi scrivere liberamente';
-    alert(alertText);
-});
+// abc > ABC
 document.getElementById('toupper').addEventListener('click', () => {
-    const textarea = document.getElementById('testo');
-    textarea.value = textarea.value.toUpperCase();
+    testo.value = testo.value.toUpperCase();
 });
+
+// Parola per parola
 document.getElementById('wordbyword').addEventListener('click', () => {
-    const textarea = document.getElementById('testo');
-    const testo = textarea.value.trim();
-
-    if (!testo){
-        const selectedLang = (langSelect && langSelect.value) || localStorage.getItem('lang') || 'it';
-        const alertText = selectedLang === 'en' ? 'No text to modify' : 'Nessun testo da modificare';
-        alert(alertText);
-        return;
-    }
-
-    // Divide il testo in parole
-    const parole = testo.split(/\s+/);
-
-    // Mostra le parole una per riga nel textarea (o si potrebbe creare un div dedicato)
-    textarea.value = parole.join('\n');
+    if (!testo.value.trim()) return alert((langSelect.value==='it'?'Nessun testo da modificare':'No text to modify'));
+    testo.value = testo.value.split(/\s+/).join('\n');
 });
-
-// Inizializza la pagina
-updateLanguage();
-syncLink.href = `sync.html?lang=${langSelect.value}`;
