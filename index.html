@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lyric Editor</title>
+    <link rel="stylesheet" href="style_index.css">
+    <link rel="icon" href="Assets/icon.png" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+    <h1 data-it="Lyric Editor" data-en="Lyric Editor">Lyric Editor</h1>
+
+    <div id="lang-select">
+        <label for="lang">Lingua / Language:</label>
+        <select id="lang">
+            <option value="it">Italiano</option>
+            <option value="en">English</option>
+        </select>
+    </div>
+
+    <div id="info">
+        <label for="titolo" data-it="Titolo canzone:" data-en="Song name:">Titolo canzone:</label>
+        <input type="text" id="titolo"><br>
+
+        <label for="compositore" data-it="Compositore:" data-en="Composer:">Compositore:</label>
+        <input type="text" id="compositore"><br>
+
+        <label for="artista" data-it="Artista:" data-en="Artist:">Artista:</label>
+        <input type="text" id="artista"><br>
+
+        <label for="album" data-it="Album:" data-en="Album:">Album:</label>
+        <input type="text" id="album"><br>
+
+        <label for="lingua" data-it="Lingua del testo:" data-en="Lyrics language:">Lingua del testo:</label>
+        <select id="lingua">
+            <option value="it">Italiano</option>
+            <option value="en">Inglese</option>
+            <option value="es">Spagnolo</option>
+            <option value="fr">Francese</option>
+            <option value="de">Tedesco</option>
+            <option value="pt">Portoghese</option>
+            <option value="ru">Russo</option>
+            <option value="ja">Giapponese</option>
+            <option value="ko">Coreano</option>
+            <option value="zh">Cinese</option>
+            <option value="ar">Arabo</option>
+            <option value="hi">Hindi</option>
+            <option value="tr">Turco</option>
+            <option value="pl">Polacco</option>
+            <option value="nl">Olandese</option>
+            <option value="sv">Svedese</option>
+            <option value="fi">Finlandese</option>
+            <option value="el">Greco</option>
+            <option value="he">Ebraico</option>
+            <option value="cs">Ceco</option>
+            <option value="hu">Ungherese</option>
+            <option value="ro">Rumeno</option>
+        </select><br>
+
+        <label for="by" data-it="Sincronizzato da:" data-en="Synced by:">Sincronizzato da:</label>
+        <input type="text" id="by"><br>
+    </div>
+
+    <div id="lyrics">
+        <label for="testo" data-it="Inserisci qui il testo della canzone:" data-en="Write here the song text:">Inserisci qui il testo della canzone:</label>
+        <textarea id="testo" rows="10" cols="60"></textarea>
+    </div>
+
+    <div id="controls">
+        <div class="button-box">
+            <button id="reset" data-it="Reset" data-en="Reset">Reset</button>
+        </div>
+        <div class="button-box">
+            <button id="load" data-it="Carica testo" data-en="Load text">Carica testo</button>
+        </div>
+        <div class="button-box">
+            <button id="stripsec" data-it="Rimuovi sezioni" data-en="Remove sections">Rimuovi sezioni</button>
+        </div>
+        <div class="button-box">
+            <button id="striptags" data-it="Rimuovi tag" data-en="Remove tags">Rimuovi tag</button>
+        </div>
+        <div class="button-box">
+            <button id="export" data-it="Esporta" data-en="Export">Esporta</button>
+        </div>
+        <div class="button-box">
+            <button id="pdf" data-it="PDF" data-en="PDF">PDF</button>
+        </div>
+        <div class="button-box">
+            <button id="unlimit" data-it="Caratteri illimitati" data-en="Unlimited characters">Caratteri illimitati</button>
+        </div>
+        <div class="button-box">
+            <button id="toupper" data-it="abc>ABC" data-en="abc>ABC">abc>ABC</button>
+        </div>
+        <div class="button-box">
+            <a id="sync-link" href="#">
+                <button id="sync" class="main-btn" data-it="Sincronizza con la musica" data-en="Sync with music">Sincronizza con la musica</button>
+            </a>
+        </div>
+        <div class="button-box">
+            <button id="wordbyword" data-it="Parola per parola" data-en="Word by word">Parola per parola</button>
+        </div>
+    </div>
+
+    <script src="script_index.js"></script>
+</body>
+</html>

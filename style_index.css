@@ -1,0 +1,169 @@
+/* ==========================
+   Impostazioni generali
+=========================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    padding: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+@media (max-width: 600){
+    label, input, textarea, select {
+        width: 100%;
+    }
+    label {
+        margin-bottom: 5px;
+    }
+}
+
+/* ==========================
+   Tema chiaro / scuro
+=========================== */
+
+@media (prefers-color-scheme: dark){
+    body {
+        background-color: #121212;
+        color: #e0e0e0;
+    }
+
+    input, textarea, select {
+        background-color: #1e1e1e;
+        color: #e0e0e0;
+        border: 1px solid #444;
+    }
+
+    button {
+        background-color: #3498db;
+        color: white;
+    }
+
+    button:hover {
+        background-color: #2980b9;
+    }
+
+    .info, .lyrics, .controls {
+        background-color: #1e1e1e;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        border: 1px solid #333;
+    }
+}
+
+@media (prefers-color-scheme: light){
+    body {
+        background-color: #fff;
+        color: #222;
+    }
+
+    input, textarea, select {
+        background-color: #fff;
+        color: #222;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        background-color: #3498db;
+        color: white;
+    }
+
+    button:hover {
+        background-color: #2980b9;
+    }
+
+    .info, .lyrics, .controls {
+        background-color: #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* ==========================
+   Titoli
+=========================== */
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+/* ==========================
+   Contenitori principali
+=========================== */
+
+.info, .lyrics, .controls {
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+#controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* ==========================
+   Form elementi
+=========================== */
+
+label {
+    display: inline-block;
+    width: 150px;
+    font-weight: bold;
+}
+
+input, textarea, select {
+    width: calc(100% - 160px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* ==========================
+   Pulsanti
+=========================== */
+
+.button-box {
+    background-color: rgba(52, 152, 219, 0.1);
+    padding: 5px 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.button-box button:hover {
+    background-color: #2980b9;
+}
+
+.button-box button {
+    background: none;
+    border-color: #3498db;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.main-btn {
+    font-size: 2em;
+    padding: 12px 25px;
+    border-radius: 12px;
+}

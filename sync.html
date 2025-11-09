@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lyric Editor - Sincronizza</title>
+<link rel="stylesheet" href="style_sync.css">
+<link rel="icon" href="Assets/icon.png" type="image/x-icon">
+</head>
+<body onload="updateLanguage()">
+
+<h1 id="song-title" data-it="Titolo della canzone" data-en="Song title">Titolo della canzone</h1>
+
+<div id="lyrics-sync">
+  <ul id="lyrics-list"></ul>
+</div>
+
+<div id="controls-sync">
+  <a href="index.html"><button id="editor" data-it="Editor" data-en="Editor">Editor</button></a>
+  <button id="reset" data-it="Reset" data-en="Reset">Reset</button>
+  <button id="load-audio" data-it="Carica Audio" data-en="Load Audio">Carica Audio</button>
+  <button id="start" data-it="Start / Pausa" data-en="Start / Pause">Start / Pausa</button>
+  <button id="next-line" data-it="Next Line" data-en="Next Line">Prossima linea</button>
+</div>
+
+<script src="script_sync.js"></script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+/* ==========================
+   Generale per sync.html
+=========================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    padding: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* ==========================
+   Tema chiaro / scuro
+=========================== */
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212;
+        color: #e0e0e0;
+    }
+
+    button {
+        background-color: #3498db;
+        color: white;
+    }
+
+    button:hover {
+        background-color: #2980b9;
+    }
+
+    #lyrics-sync {
+        background-color: #1e1e1e;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    #lyrics-sync li {
+        color: #e0e0e0;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    body {
+        background-color: #f4f4f4;
+        color: #222;
+    }
+
+    button {
+        background-color: #3498db;
+        color: white;
+    }
+
+    button:hover {
+        background-color: #2980b9;
+    }
+
+    #lyrics-sync {
+        background-color: #fff;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #lyrics-sync li {
+        color: #222;
+    }
+}
+
+/* ==========================
+   Titolo canzone
+=========================== */
+
+#song-title {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+/* ==========================
+   Lista testi
+=========================== */
+
+#lyrics-sync ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#lyrics-sync li {
+    padding: 8px 12px;
+    margin: 3px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#lyrics-sync li:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+#lyrics-sync li b {
+    font-weight: bold;
+}
+
+/* ==========================
+   Pulsanti sincronizzazione
+=========================== */
+
+#controls-sync {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+#controls-sync button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+/* Pulsante grande Start / Next Line */
+
+#start, #next-line {
+    font-size: 1.2em;
+    padding: 12px 25px;
+    border-radius: 12px;
+}
