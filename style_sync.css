@@ -1,7 +1,6 @@
 /* ==========================
    Generale per sync.html
 =========================== */
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -18,7 +17,6 @@ body {
 /* ==========================
    Tema chiaro / scuro
 =========================== */
-
 @media (prefers-color-scheme: dark) {
     body {
         background-color: #121212;
@@ -39,6 +37,8 @@ body {
         padding: 15px;
         border-radius: 10px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        height: 400px;
+        overflow-y: auto;
     }
 
     #lyrics-sync li {
@@ -66,6 +66,8 @@ body {
         padding: 15px;
         border-radius: 10px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        height: 400px;
+        overflow-y: auto;
     }
 
     #lyrics-sync li {
@@ -76,7 +78,6 @@ body {
 /* ==========================
    Titolo canzone
 =========================== */
-
 #song-title {
     text-align: center;
     font-size: 2em;
@@ -86,7 +87,6 @@ body {
 /* ==========================
    Lista testi
 =========================== */
-
 #lyrics-sync ul {
     list-style: none;
     padding-left: 0;
@@ -106,12 +106,12 @@ body {
 
 #lyrics-sync li b {
     font-weight: bold;
+    color: #007bff;
 }
 
 /* ==========================
    Pulsanti sincronizzazione
 =========================== */
-
 #controls-sync {
     margin-top: 15px;
     display: flex;
@@ -130,9 +130,22 @@ body {
 }
 
 /* Pulsante grande Start / Next Line */
-
 #start, #next-line {
     font-size: 1.2em;
     padding: 12px 25px;
     border-radius: 12px;
+}
+
+/* ==========================
+   Evidenzia linea corrente
+=========================== */
+.current-line {
+    background-color: rgba(0, 123, 255, 0.15);
+}
+
+/* ==========================
+   Scroll automatico
+=========================== */
+#lyrics-sync {
+    scroll-behavior: smooth;
 }

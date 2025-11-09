@@ -4,15 +4,14 @@
 const params = new URLSearchParams(window.location.search);
 const lang = params.get('lang') || 'it';
 
-function updateLanguage() {
+function updateLanguage(){
     document.querySelectorAll('[data-it]').forEach(el => {
         el.textContent = (lang==='it') ? el.getAttribute('data-it') : el.getAttribute('data-en');
     });
 }
-updateLanguage();
 
 // ============================
-// Recupera dati da sessionStorage
+// Lettura dati da sessionStorage
 // ============================
 const songData = JSON.parse(sessionStorage.getItem('songData') || '{}');
 document.getElementById('song-title').textContent = songData.titolo || 'Titolo';
@@ -23,7 +22,7 @@ const lines = songData.testo ? songData.testo.split(/\r?\n/) : [];
 lines.forEach(line => {
     const li = document.createElement('li');
     li.dataset.it = line;
-    li.dataset.en = line; // se hai la traduzione, sostituire qui
+    li.dataset.en = line; // se vuoi aggiungere traduzione, sostituisci qui
     li.dataset.time = '';
     li.textContent = li.dataset.it;
     lyricsListContainer.appendChild(li);
@@ -36,6 +35,7 @@ const startBtn = document.getElementById('start');
 const nextBtn = document.getElementById('next-line');
 const resetBtn = document.getElementById('reset');
 const loadAudioBtn = document.getElementById('load-audio');
+const downloadLrcBtn = document.getElementById('download-lrc');
 
 let audio = null;
 let audioFileName = 'song';
@@ -74,7 +74,7 @@ startBtn.addEventListener('click', () => {
         audio.play();
         startBtn.textContent = lang==='it' ? 'Pausa' : 'Pause';
         isPlaying = true;
-    } else {
+    } else{
         audio.pause();
         startBtn.textContent = lang==='it' ? 'Play' : 'Play';
         isPlaying = false;
@@ -92,6 +92,9 @@ nextBtn.addEventListener('click', () => {
         line.dataset.time = time;
         line.innerHTML = `<b>${line.dataset.it}</b> <span style="opacity:0.6;">[${formatTime(time)}]</span>`;
         currentLine++;
+
+        // Scroll automatico
+        line.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 });
 
@@ -133,22 +136,22 @@ function formatTime(time){
 }
 
 function downloadLRC(){
+    const lines = Array.from(lyricsListContainer.children);
     let lrc = `[ti:${songData.titolo || ''}]\n[ar:${songData.artista || ''}]\n[al:${songData.album || ''}]\n[by:${songData.by || ''}]\n[au:${songData.compositore || ''}]\n[la:${songData.lingua || 'IT'}]\n`;
-    Array.from(lyricsListContainer.children).forEach(line=>{
+    lines.forEach(line=>{
         const time = line.dataset.time ? formatTime(line.dataset.time) : '00:00.000';
         lrc += `[${time}] ${line.dataset.it} / ${line.dataset.en}\n`;
     });
 
     const blob = new Blob([lrc],{type:'text/plain;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
+    a.href = url;
     a.download = `${audioFileName}.lrc`;
+    document.body.appendChild(a);
     a.click();
+    document.body.removeChild(a);
 }
 
-// Scarica automaticamente LRC quando audio finisce e si clicca Start/Pause
-startBtn.addEventListener('click', ()=>{
-    if(!isPlaying && audio && audio.ended){
-        downloadLRC();
-    }
-});
+// Pulsante scarica LRC
+downloadLrcBtn.addEventListener('click', downloadLRC);
