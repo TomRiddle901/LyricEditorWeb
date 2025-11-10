@@ -137,10 +137,10 @@ function formatTime(time){
 
 function downloadLRC(){
     const lines = Array.from(lyricsListContainer.children);
-    let lrc = `[ti:${songData.titolo || ''}]\n[ar:${songData.artista || ''}]\n[al:${songData.album || ''}]\n[by:${songData.by || ''}]\n[au:${songData.compositore || ''}]\n[la:${songData.lingua.toUpperCase() || 'IT'}]\n`;
+    let lrc = `[ti:${songData.titolo || ''}]\n[ar:${songData.artista || ''}]\n[al:${songData.album || ''}]\n[by:${songData.by || ''}]\n[au:${songData.compositore || ''}]\n[la:${(songData.lingua || 'IT').toUpperCase()}]\n`;
     lines.forEach(line=>{
         const time = line.dataset.time ? formatTime(line.dataset.time) : '00:00.000';
-        lrc += `[${time}] ${line.dataset.it} / ${line.dataset.en}\n`;
+        lrc += `[${time}] ${line.dataset.it}\n`;
     });
 
     const blob = new Blob([lrc],{type:'text/plain;charset=utf-8'});
