@@ -22,7 +22,7 @@ const lines = songData.testo ? songData.testo.split(/\r?\n/) : [];
 lines.forEach(line => {
     const li = document.createElement('li');
     li.dataset.it = line;
-    li.dataset.en = line; // se vuoi aggiungere traduzione, sostituisci qui
+    li.dataset.en = line;
     li.dataset.time = '';
     li.textContent = li.dataset.it;
     lyricsListContainer.appendChild(li);
@@ -137,7 +137,7 @@ function formatTime(time){
 
 function downloadLRC(){
     const lines = Array.from(lyricsListContainer.children);
-    let lrc = `[ti:${songData.titolo || ''}]\n[ar:${songData.artista || ''}]\n[al:${songData.album || ''}]\n[by:${songData.by || ''}]\n[au:${songData.compositore || ''}]\n[la:${songData.lingua || 'IT'}]\n`;
+    let lrc = `[ti:${songData.titolo || ''}]\n[ar:${songData.artista || ''}]\n[al:${songData.album || ''}]\n[by:${songData.by || ''}]\n[au:${songData.compositore || ''}]\n[la:${songData.lingua.toUpperCase() || 'IT'}]\n`;
     lines.forEach(line=>{
         const time = line.dataset.time ? formatTime(line.dataset.time) : '00:00.000';
         lrc += `[${time}] ${line.dataset.it} / ${line.dataset.en}\n`;
