@@ -5,7 +5,10 @@ const params = new URLSearchParams(window.location.search);
 const lang = params.get('lang') || 'it';
 
 function updateLanguage(){
+    // evita di sovrascrivere il titolo della canzone se è stato salvato in sessionStorage
+    const stored = JSON.parse(sessionStorage.getItem('songData') || '{}');
     document.querySelectorAll('[data-it]').forEach(el => {
+        if(el.id === 'song-title' && stored.titolo) return;
         el.textContent = (lang==='it') ? el.getAttribute('data-it') : el.getAttribute('data-en');
     });
 }
