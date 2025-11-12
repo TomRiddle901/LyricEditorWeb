@@ -14,7 +14,11 @@ function updateLanguage(){
 // Lettura dati da sessionStorage
 // ============================
 const songData = JSON.parse(sessionStorage.getItem('songData') || '{}');
-document.getElementById('song-title').textContent = songData.titolo || 'Titolo';
+const titleEl = document.getElementById('song-title');
+if(titleEl){
+    // se esiste un titolo salvato lo mostro, altrimenti uso il testo di default già presente
+    titleEl.textContent = songData.titolo || titleEl.getAttribute('data-it') || 'Titolo';
+}
 
 const lyricsListContainer = document.getElementById('lyrics-list');
 const lines = songData.testo ? songData.testo.split(/\r?\n/) : [];
