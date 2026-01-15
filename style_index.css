@@ -31,7 +31,7 @@ body{
 :root{
     --bg-color: #fff;
     --text-color: #222;
-    --nput-bg: #fff;
+    --input-bg: #fff;
     --input-border: #ccc;
     --input-color: #222;
     --btn-bg: #3498db;
@@ -39,4 +39,19 @@ body{
     --btn-hover: #2980b9;
     --card-bg: #fff;
     --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (prefers-color-scheme: dark){
+    :root{
+        --bg-color: #121212;
+        --text-color: #e0e0e0;
+        --input-bg: #1e1e1e;
+        --input-border: #444;
+        --input-color: #e0e0e0;
+        --btn-bg: #3498db;
+        --btn-color: #fff;
+        --btn-hover: #2980b9;
+        --card-bg: #1e1e1e;
+        --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
 }
