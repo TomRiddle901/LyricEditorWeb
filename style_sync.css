@@ -13,3 +13,39 @@ body{
     padding: 20px;
     transition: background-color 0.4s, color 0.4s;
 }
+
+/* ==========================
+   Tema chiaro / scuro con variabili
+=========================== */
+:root{
+    --bg-color: #f4f4f4;
+    --text-color: #222;
+    --btn-bg: #3498db;
+    --btn-color: #fff;
+    --btn-hover: #2980b9;
+    --card-bg: #fff;
+    --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --line-hover: rgba(52, 152, 219, 0.1);
+    --line-current: rgba(0, 123, 255, 0.15);
+    --highlight-bold: #007bff;
+}
+
+@media (prefers-color-scheme: dark){
+    :root{
+        --bg-color: #121212;
+        --text-color: #e0e0e0;
+        --btn-bg: #3498db;
+        --btn-color: #fff;
+        --btn-hover: #2980b9;
+        --card-bg: #1e1e1e;
+        --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        --line-hover: rgba(52, 152, 219, 0.15);
+        --line-current: rgba(0, 123, 255, 0.25);
+        --highlight-bold: #4da6ff;
+    }
+}
+
+body{
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
