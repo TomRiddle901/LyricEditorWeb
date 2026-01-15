@@ -59,3 +59,41 @@ body{
     margin-bottom: 20px;
     font-weight: 600;
 }
+
+/* ==========================
+   Lista testi
+=========================== */
+#lyrics-sync{
+    list-style: none;
+    padding: 15px;
+    border-radius: 12px;
+    background-color: var(--card-bg);
+    box-shadow: var(--card-shadow);
+    max-height: 400px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    transition: background-color 0.4s, box-shadow 0.4s;
+}
+
+#lyrics-sync li{
+    padding: 10px 15px;
+    margin: 5px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#lyrics-sync li:hover{
+    background-color: var(--line-hover);
+}
+
+#lyrics-sync li b{
+    font-weight: 600;
+    color: var(--highlight-bold);
+}
+
+/* Evidenzia linea corrente */
+.current-line{
+    background-color: var(--line-current);
+    font-weight: 600;
+}
