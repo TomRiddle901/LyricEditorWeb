@@ -153,3 +153,13 @@ textarea{
     background-color: var(--btn-hover);
     transform: translateY(-2px);
 }
+
+/* ==========================
+   Controlli flex
+=========================== */
+#controls{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+}
