@@ -82,3 +82,27 @@ h1{
     box-shadow: var(--card-shadow);
     transition: background-color 0.4s, box-shadow 0.4s;
 }
+
+/* ==========================
+   Form elementi
+=========================== */
+label{
+    display: inline-block;
+    width: 150px;
+    font-weight: 600;
+}
+
+input, textarea, select{
+    width: calc(100% - 160px);
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--input-border);
+    background-color: var(--input-bg);
+    color: var(--input-color);
+    transition: background-color 0.3, color 0.3, border-color 0.3;
+}
+
+textarea{
+    resize: vertical;    
+}
