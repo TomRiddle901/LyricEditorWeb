@@ -24,3 +24,19 @@ body{
         margin-bottom: 5px;
     }
 }
+
+/* ==========================
+   Tema chiaro / scuro con variabili
+=========================== */
+:root{
+    --bg-color: #fff;
+    --text-color: #222;
+    --nput-bg: #fff;
+    --input-border: #ccc;
+    --input-color: #222;
+    --btn-bg: #3498db;
+    --btn-color: #fff;
+    --btn-hover: #2980b9;
+    --card-bg: #fff;
+    --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
