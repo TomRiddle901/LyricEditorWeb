@@ -49,3 +49,13 @@ body{
     background-color: var(--bg-color);
     color: var(--text-color);
 }
+
+/* ==========================
+   Titolo canzone
+=========================== */
+#song-title{
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
