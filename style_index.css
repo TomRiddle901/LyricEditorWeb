@@ -60,3 +60,13 @@ body{
     background-color: var(--bg-color);
     color: var(--text-color);
 }
+
+/* ==========================
+   Titoli
+=========================== */
+h1{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2em;
+    font-weight: 600;
+}
