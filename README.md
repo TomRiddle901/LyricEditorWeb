@@ -1,10 +1,20 @@
-# Lyric Editor / Lyric Editor
+# Lyric Editor
 
 Lyric Editor è un’applicazione web per scrivere, modificare e sincronizzare testi di canzoni con tracce audio.  
 Permette di aggiungere timestamp, visualizzare il testo in grassetto durante la riproduzione, e esportare il file sincronizzato in formato LRC.
 
 Lyric Editor is a web application to write, edit, and synchronize song lyrics with audio tracks.  
 It allows adding timestamps, highlighting the text in bold during playback, and exporting the synchronized lyrics in LRC format.
+
+## Prova l’app online / Try the Web App
+
+Puoi usare Lyric Editor direttamente nel browser senza scaricare nulla:  
+[https://tomriddle901.github.io/LyricEditorWeb/](https://tomriddle901.github.io/LyricEditorWeb/)
+
+You can use Lyric Editor directly in your browser without downloading anything:  
+[https://tomriddle901.github.io/LyricEditorWeb/](https://tomriddle901.github.io/LyricEditorWeb/)
+
+---
 
 ## Funzionalità principali / Main Features
 
@@ -23,18 +33,20 @@ It allows adding timestamps, highlighting the text in bold during playback, and 
 - Il file LRC ha lo stesso nome del file audio caricato  
   The LRC file will have the same name as the uploaded audio file
 
+---
+
 ## Come usare / How to Use
 
-1. Aprire `index.html` nel browser  
-   Open `index.html` in the browser
+1. Aprire il link della webapp nel browser  
+   Open the web app link in your browser
 2. Inserire le informazioni della canzone e il testo  
    Enter the song details and lyrics
-3. Cliccare **Sincronizza con la musica** per aprire la pagina `sync.html`  
-   Click **Sync with Music** to open the `sync.html` page
-4. Caricare l’audio e sincronizzare il testo cliccando **Start / Pausa** e **Prossima linea**  
-   Upload the audio and synchronize the lyrics by clicking **Start / Pause** and **Next Line**
-5. Alla fine della sincronizzazione, cliccare **Scarica LRC** per salvare il file  
-   At the end of the synchronization, click **Download LRC** to save the file
+3. Sincronizzare il testo con l’audio usando i comandi **Start / Pausa** e **Prossima linea**  
+   Synchronize the lyrics with audio using **Start / Pause** and **Next Line**
+4. Scaricare il file LRC sincronizzato alla fine  
+   Download the synchronized LRC file at the end
+
+---
 
 ## Tecnologie utilizzate / Technologies Used
 
@@ -42,15 +54,7 @@ It allows adding timestamps, highlighting the text in bold during playback, and 
 - CSS3
 - JavaScript
 
-## Struttura file / File Structure
-
-- `index.html` → Editor testo canzone / Song lyrics editor
-- `sync.html` → Sincronizzazione con audio / Audio synchronization
-- `script_index.js` → Logica editor testo / Text editor logic
-- `script_sync.js` → Logica sincronizzazione / Synchronization logic
-- `style_index.css` → Stili per editor / Styles for editor
-- `style_sync.css` → Stili per sincronizzazione / Styles for synchronization
-- `Assets/` → Icone e risorse statiche / Icons and static resources
+---
 
 ## Licenza / License
 
